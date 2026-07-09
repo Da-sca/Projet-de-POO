@@ -16,7 +16,7 @@ public class Analyseur {
         if (!produit()) {
             return false;
         }
-        if (source.premier() == '+') {
+        if (source.premier() == '+' || source.premier() == '-') {
             source.suivant();
             return somme();
         }
@@ -28,7 +28,7 @@ public class Analyseur {
         if (!terme()) {
             return false;
         }
-        if (source.premier() == '*') {
+        if (source.premier() == '*' || source.premier() == '/') {
             source.suivant();
             return produit();
         }
@@ -61,11 +61,13 @@ public class Analyseur {
         return false;
     }
 
-    // Verifie la presence du point-virgule final et affiche un message selon le résultat.
+    // Verifie la presence du point-virgule final et affiche un message selon le résultat de l'analyse
     public void analyseur() {
-        if (expression() && source.premier() == ';') {
+        if (expression()) {
+            System.out.println(source.premier());
             System.out.println("Analyse correcte.");
         } else {
+            System.out.println(source.premier());
             System.out.println("Erreur de syntaxe.");
         }
     }
