@@ -13,10 +13,13 @@ public class Analyseur {
 
     // Analyse une somme : S -> P | P + S
     public boolean somme() {
+        if (source.erreur()) return false;
         if (!produit()) {
             return false;
         }
-        if (source.premier() == '+' || source.premier() == '-') {
+        char caractereCourant = source.premier();
+        if (source.erreur()) return false;
+        if (caractereCourant == '+' || caractereCourant == '-') {
             source.suivant();
             return somme();
         }
@@ -25,10 +28,13 @@ public class Analyseur {
 
     // Analyse un produit : P -> T | T * P
     public boolean produit() {
+        if (source.erreur()) return false;
         if (!terme()) {
             return false;
         }
-        if (source.premier() == '*' || source.premier() == '/') {
+        char caractereCourant = source.premier();
+        if (source.erreur()) return false;
+        if (caractereCourant == '*' || caractereCourant == '/') {
             source.suivant();
             return produit();
         }
@@ -37,12 +43,17 @@ public class Analyseur {
 
     // Analyse un terme : T -> C | ( S )
     public boolean terme() {
-        if (source.premier() == '(') {
+        if (source.erreur()) return false;
+        char caractereCourant = source.premier();
+        if (source.erreur()) return false;
+        if (caractereCourant == '(') {
             source.suivant();
             if (!somme()) {
                 return false;
             }
-            if (source.premier() != ')') {
+            char caractereFermant = source.premier();
+            if (source.erreur()) return false;
+            if (caractereFermant != ')') {
                 return false;
             }
             source.suivant();
@@ -53,8 +64,10 @@ public class Analyseur {
 
     // Analyse un chiffre : C -> 0 | 1 | ... | 9
     public boolean chiffre() {
-        char c = source.premier();
-        if (c >= '0' && c <= '9') {
+        if (source.erreur()) return false;
+        char caractereCourant = source.premier();
+        if (source.erreur()) return false;
+        if (caractereCourant >= '0' && caractereCourant <= '9') {
             source.suivant();
             return true;
         }
@@ -63,7 +76,7 @@ public class Analyseur {
 
     // Verifie la presence du point-virgule final et affiche un message selon le résultat de l'analyse
     public void analyseur() {
-        if (somme()) { //Test1
+        if (somme() && source.premier() == ';') { //Test1
             System.out.println(source.premier());
             System.out.println("Analyse correcte.");
         } else {
