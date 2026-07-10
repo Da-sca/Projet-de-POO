@@ -63,7 +63,7 @@ public class Analyseur {
 
     // Verifie la presence du point-virgule final et affiche un message selon le résultat de l'analyse
     public void analyseur() {
-        if (somme()) {
+        if (somme()) { //Test1
             System.out.println(source.premier());
             System.out.println("Analyse correcte.");
         } else {
@@ -73,6 +73,7 @@ public class Analyseur {
     }
 }
 
-/*TEST 1: On remplace expression() par somme() dans analyseur 
+/*TEST 1: On remplace expression() par somme() dans Analyseur() 
 et l'analyse fonctionne quand même. Ce qui confirme que la méthode expression() est bien inutile 
-et ne fait que délégueur. */
+et ne fait que déléguer. */
+
