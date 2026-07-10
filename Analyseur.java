@@ -63,7 +63,7 @@ public class Analyseur {
 
     // Verifie la presence du point-virgule final et affiche un message selon le résultat de l'analyse
     public void analyseur() {
-        if (somme() && source.premier() == ';') {
+        if (somme()) {
             System.out.println(source.premier());
             System.out.println("Analyse correcte.");
         } else {
