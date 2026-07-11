@@ -7,36 +7,27 @@ public class Analyseur {
         this.source = source;
     }
 
-    // E -> S ;
-    // public void expression() {
-       // somme();
-    // }
+ 
 
     // Analyse une somme : S -> P | P + S
     public void somme()  throws Exception, SyntaxException {
-        // if (source.erreur()) return false;
-        //if (!produit()) {
+        
         produit();
-        //    return false;
-        //}
+        
         char caractereCourant = source.premier();
-        //if (source.erreur()) return false;
+        
         if (caractereCourant == '+' || caractereCourant == '-') {
             source.suivant();
             somme();
         }
-        //return true;
+        
     }
 
     // Analyse un produit : P -> T | T * P
     public void produit() throws Exception, SyntaxException {
-        //if (source.erreur()) return false;
-        //if (!terme()) {
-            //return false;
-        //}
         terme();
         char caractereCourant = source.premier();
-        //if (source.erreur()) return false;
+
         if (caractereCourant == '*' || caractereCourant == '/') {
             source.suivant();
             produit();
@@ -46,19 +37,19 @@ public class Analyseur {
 
     // Analyse un terme : T -> C | ( S )
     public void terme() throws Exception, SyntaxException {
-        // if (source.erreur()) return false;
+        
         char caractereCourant = source.premier();
-        // if (source.erreur()) return false;
+        
         if (caractereCourant == '(') {
             source.suivant();
-            // if (!somme()) {
+          
             somme();
-                // return false;
+                
             //}
             char caractereFermant = source.premier();
-            //if (source.erreur()) return false;
+            
             if (caractereFermant != ')') {
-               // return false;
+               
                 throw new SyntaxException("Pas de parenthèse fermante");
             }
             source.suivant();
@@ -70,14 +61,14 @@ public class Analyseur {
 
     // Analyse un chiffre : C -> 0 | 1 | ... | 9
     public void chiffre() throws Exception, SyntaxException {
-        // if (source.erreur()) return false;
+        
         char caractereCourant = source.premier();
-        // if (source.erreur()) return false;
+        
         if (caractereCourant >= '0' && caractereCourant <= '9') {
             source.suivant();
-            //return true;
+            
         }
-        //return false;
+        
         else throw new SyntaxException("On n'a pas de chiffre mais '"+ caractereCourant +"'");
     }
 

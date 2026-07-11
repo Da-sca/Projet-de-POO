@@ -13,7 +13,7 @@ public class Principale{
          * 2+3;
          * 2/0;
          */
-        String chaine = "2/0;"; //TEST3
+        String chaine = "2+3$4"; //TEST3
 
         /*TEST 2: On teste l'analyseur avec "2+3&4;" et 
         ça revoie analyse correcte comme le prévoit le CDC.
