@@ -15,7 +15,7 @@ public class Principale{
          * 2+2*3
          * 
          */
-        String chaine = "2/0;"; //TEST3
+        String chaine = "2+4*3;"; //TEST3
 
         /*TEST 2: On teste l'analyseur avec "2+3&4;" et 
         ça revoie analyse correcte comme le prévoit le CDC.
@@ -36,7 +36,7 @@ public class Principale{
 
         // lancement de l'analyseur
         try {
-            analyse.interpreteur();
+            analyse.compilateur();
         } catch (SyntaxException e){
             System.out.println("Erreur de syntaxe : " + e.getMessage());
         } catch (Exception e){
