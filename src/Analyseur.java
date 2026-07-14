@@ -1,10 +1,10 @@
-package src;
 public class Analyseur {
 
     private Source source; // les caracteres qu'ont va analyser
-
+    private Pile pile; // va etre utiilsée pour empiler et/ou calculer les valeurs
     public Analyseur(Source source) {
         this.source = source;
+        this.pile = new Pile();
     }
 
  
@@ -19,6 +19,10 @@ public class Analyseur {
         if (caractereCourant == '+' || caractereCourant == '-') {
             source.suivant();
             somme();
+            // ajout logique de calcul (dépiler les 2 valeurs puis empiler le résultat)
+            int droite = pile.depiler();
+            int gauche = pile.depiler();
+            pile.empiler(caractereCourant == '+' ? gauche+droite : gauche-droite);
         }
         
     }
@@ -31,6 +35,10 @@ public class Analyseur {
         if (caractereCourant == '*' || caractereCourant == '/') {
             source.suivant();
             produit();
+            // logique de calcul
+            int droite = pile.depiler();
+            int gauche = pile.depiler();
+            pile.empiler(caractereCourant == '*' ? gauche*droite : gauche/droite);
         }
         // return true;
     }
@@ -45,16 +53,14 @@ public class Analyseur {
           
             somme();
                 
-            //}
             char caractereFermant = source.premier();
             
             if (caractereFermant != ')') {
-               
                 throw new SyntaxException("Pas de parenthèse fermante");
             }
             source.suivant();
-            // return true;
-        } else {
+
+            } else {
             chiffre();
         }
     }
@@ -65,19 +71,20 @@ public class Analyseur {
         char caractereCourant = source.premier();
         
         if (caractereCourant >= '0' && caractereCourant <= '9') {
+            pile.empiler(caractereCourant - '0');
             source.suivant();
             
         }
-        
         else throw new SyntaxException("On n'a pas de chiffre mais '"+ caractereCourant +"'");
     }
 
     // Verifie la presence du point-virgule final et affiche un message selon le résultat de l'analyse
-    public void analyseur() throws Exception, SyntaxException{
+    public void interpreteur() throws Exception, SyntaxException{
         somme();
         if (source.premier() == ';') { //Test1
             // System.out.println(source.premier());
             System.out.println("Analyse correcte.");
+            System.out.println("Resultat = "+ pile.sommet());
         } else {
             // System.out.println(source.premier());
             // System.out.println("Erreur de syntaxe.");  

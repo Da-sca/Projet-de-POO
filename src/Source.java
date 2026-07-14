@@ -1,4 +1,3 @@
-package src;
 public class Source{
     private String chaine;
     private int indice;
@@ -8,13 +7,12 @@ public class Source{
     public Source (String chaine){
         this.chaine = chaine;
         this.indice = 0;
-    //    this.erreur = false;
     }
 
     // la focntion qui retourne le caratere pris dans la chaine
     public char premier() throws Exception{
       if (indice >= chaine.length()) {
-            throw new Exception("Erreur : L'indice ne peut pas depasser la chaine");
+            throw new Exception("Debordement de la chaîne: indice ="+ indice);
          }
       return chaine.charAt(indice);
   }
@@ -22,14 +20,9 @@ public class Source{
     // la fonction qui incremente l'indice de la position
     public void suivant() throws Exception{
          if (indice >= chaine.length()) {
-            throw new Exception("Erreur : L'indice ne peut pas depasser la chaine");
+            throw new Exception("Debordement de la chaîne: indice");
          }
         indice++;
-
-    //getteur pour Analyseur
-    // public boolean erreur(){
-    //    return erreur;
-    //}
     }
 
 }

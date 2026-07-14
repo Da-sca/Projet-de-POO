@@ -1,5 +1,3 @@
-package src;
-
 public class Principale{
 
     public static void main(String[] arg){
@@ -12,8 +10,12 @@ public class Principale{
          * 2+3$4;
          * 2+3;
          * 2/0;
+         * 10-2-3
+         * 7-2-3;  --> 8 ??
+         * 2+2*3
+         * 
          */
-        String chaine = "2+3$4"; //TEST3
+        String chaine = "2/0;"; //TEST3
 
         /*TEST 2: On teste l'analyseur avec "2+3&4;" et 
         ça revoie analyse correcte comme le prévoit le CDC.
@@ -34,11 +36,11 @@ public class Principale{
 
         // lancement de l'analyseur
         try {
-            analyse.analyseur();
+            analyse.interpreteur();
         } catch (SyntaxException e){
             System.out.println("Erreur de syntaxe : " + e.getMessage());
         } catch (Exception e){
-            System.out.println("Erreur : Debordement de la chaîne : " + e.getMessage());
+            System.out.println("Erreur: " + e.getMessage());
         }
 
     }
