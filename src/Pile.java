@@ -22,7 +22,7 @@ public class Pile {
         sommet++;
     }
 
-    public int depiler() {
+    public int depiler() throws SyntaxException {
         if (estVide()) {
             throw new SyntaxException("Pile vide : impossible de dépiler.");
         }
@@ -30,7 +30,7 @@ public class Pile {
         return elements[sommet];
     }
 
-    public int sommet() {
+    public int sommet() throws SyntaxException {
         if (estVide()) {
             throw new SyntaxException("Pile vide : pas de sommet.");
         }
