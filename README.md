@@ -242,5 +242,3 @@ Ce mini-projet a été réalisé dans le cadre du module de **Programmation Orie
 **Département Génie Informatique**  
 **DIC1 — Génie Informatique**  
 **Année universitaire 2025-2026**
-
----
