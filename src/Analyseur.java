@@ -1,5 +1,8 @@
 public class Analyseur {
 
+    private static final String RESET = "[0m";
+    private static final String GREEN = "[32m"; // titre et cadre
+
     private Source source; // les caracteres qu'ont va analyser
     private Pile pile; // va etre utiilsée pour empiler et/ou calculer les valeurs
     public Analyseur(Source source) {
@@ -75,14 +78,13 @@ public class Analyseur {
 
     // Verifie la presence du point-virgule final et affiche un message selon le résultat de l'analyse
     public void interpreteur() throws  SyntaxException, Exception{
+        System.out.println(GREEN + "===== Résultat de l'interpréteur =====" + RESET);
         somme();
         if (source.premier() == ';') { //Test1
-            // System.out.println(source.premier());
-            System.out.println("Analyse correcte.");
-            System.out.println("Resultat = "+ pile.sommet());
+            System.out.println("Expression : " + source.getChaine());
+            System.out.println("Résultat = " + pile.sommet());
+            System.out.println(GREEN + "==============================" + RESET);
         } else {
-            // System.out.println(source.premier());
-            // System.out.println("Erreur de syntaxe.");
             /**
              * L'exception est levée dans deux cas :
              * - La première : lorsqu'on arrive à la fin de l'expression et qu'il n'y a pas de ';'

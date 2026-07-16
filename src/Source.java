@@ -25,4 +25,9 @@ public class Source{
         indice++;
     }
 
+    // retourne la chaine d'origine (pour l'affichage du résultat)
+    public String getChaine(){
+        return chaine;
+    }
+
 }
