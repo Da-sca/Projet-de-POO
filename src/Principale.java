@@ -13,19 +13,19 @@ public class Principale{
          * 10-2-3
          * 7-2-3;  --> 8 ??
          * 2+2*3
-         * 
+         *
          */
         String chaine = "2+4*3;"; //TEST3
 
-        /*TEST 2: On teste l'analyseur avec "2+3&4;" et 
+        /*TEST 2: On teste l'analyseur avec "2+3&4;" et
         ça revoie analyse correcte comme le prévoit le CDC.
-        Explication: Ici, dès que le parseur voit '$' au lieu de '*', produit() et somme() considerent la somme "2+3"                                           
-        comme terminée et valide, sans jamais verifier que le reste de la chaine ("$4;") a bien ete consommé.                                            
-        Comme analyseur() ne verifie pas non plus la presence reelle du point-virgule final, l'erreur passe                                              
+        Explication: Ici, dès que le parseur voit '$' au lieu de '*', produit() et somme() considerent la somme "2+3"
+        comme terminée et valide, sans jamais verifier que le reste de la chaine ("$4;") a bien ete consommé.
+        Comme analyseur() ne verifie pas non plus la presence reelle du point-virgule final, l'erreur passe
         inapercue.*/
 
 
-        /*TEST 3: Expression sans point virgule; 
+        /*TEST 3: Expression sans point virgule;
         provoque une exception comme prévu: StringIndexOutOfBoundsException */
 
         // creation de l'objet source et initialisation
