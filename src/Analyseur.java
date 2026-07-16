@@ -11,15 +11,15 @@ public class Analyseur {
         this.source = source;
     }
 
- 
+
 
     // Analyse une somme : S -> P | P + S
-    public void somme()  throws Exception, SyntaxException {
-        
+    public void somme()  throws SyntaxException , Exception{
+
         produit();
-        
+
         char caractereCourant = source.premier();
-        
+
         if (caractereCourant == '+' || caractereCourant == '-') {
             source.suivant();
             somme();
@@ -27,11 +27,11 @@ public class Analyseur {
             System.out.println(YELLOW + (caractereCourant == '+' ? "ADD" : "SUB") + RESET);
             
         }
-        
+
     }
 
     // Analyse un produit : P -> T | T * P
-    public void produit() throws Exception, SyntaxException {
+    public void produit() throws SyntaxException , Exception{
         terme();
         char caractereCourant = source.premier();
 
@@ -45,17 +45,17 @@ public class Analyseur {
     }
 
     // Analyse un terme : T -> C | ( S )
-    public void terme() throws Exception, SyntaxException {
-        
+    public void terme() throws SyntaxException , Exception{
+
         char caractereCourant = source.premier();
-        
+
         if (caractereCourant == '(') {
             source.suivant();
-          
+
             somme();
-                
+
             char caractereFermant = source.premier();
-            
+
             if (caractereFermant != ')') {
                 throw new SyntaxException("Pas de parenthèse fermante");
             }
@@ -67,14 +67,14 @@ public class Analyseur {
     }
 
     // Analyse un chiffre : C -> 0 | 1 | ... | 9
-    public void chiffre() throws Exception, SyntaxException {
-        
+    public void chiffre() throws SyntaxException , Exception{
+
         char caractereCourant = source.premier();
-        
+
         if (caractereCourant >= '0' && caractereCourant <= '9') {
             System.out.println(CYAN + "PUSH " + (caractereCourant - '0') + RESET); //On imprime la valeur au lieu d'empilerrr !!
             source.suivant();
-            
+
         }
         else throw new SyntaxException("On n'a pas de chiffre mais '"+ caractereCourant +"'");
     }
@@ -88,18 +88,17 @@ public class Analyseur {
             System.out.println(GREEN + "Analyse correcte." + RESET);
         } else {
             // System.out.println(source.premier());
-            // System.out.println("Erreur de syntaxe.");  
+            // System.out.println("Erreur de syntaxe.");
             /**
              * L'exception est levée dans deux cas :
              * - La première : lorsqu'on arrive à la fin de l'expression et qu'il n'y a pas de ';'
              * - La deuxième : lorsqu'on rencontre un caractère inconnu (comme $)
              */
-            throw new SyntaxException("Pas de ';'"); 
+            throw new SyntaxException("Pas de ';'");
         }
     }
 }
 
-/*TEST 1: On remplace expression() par somme() dans Analyseur() 
-et l'analyse fonctionne quand même. Ce qui confirme que la méthode expression() est bien inutile 
+/*TEST 1: On remplace expression() par somme() dans Analyseur()
+et l'analyse fonctionne quand même. Ce qui confirme que la méthode expression() est bien inutile
 et ne fait que déléguer. */
-
