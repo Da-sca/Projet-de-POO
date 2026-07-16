@@ -1,4 +1,3 @@
-package src;
 public class Source{
     private String chaine;
     private int indice;
