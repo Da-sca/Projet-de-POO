@@ -1,10 +1,14 @@
 public class Analyseur {
 
+    private static final String RESET = "[0m";
+    private static final String CYAN = "[36m";   // valeurs empilées
+    private static final String YELLOW = "[33m"; // opérateurs
+    private static final String GREEN = "[32m";  // titre et succès
+
     private Source source; // les caracteres qu'ont va analyser
-    //private Pile pile; // va etre utiilsée pour empiler et/ou calculer les valeurs
+
     public Analyseur(Source source) {
         this.source = source;
-        //this.pile = new Pile();
     }
 
 
@@ -20,8 +24,8 @@ public class Analyseur {
             source.suivant();
             somme();
             // Au lieu de calculer on print l'opération
-            System.out.println(caractereCourant);
-
+            System.out.println(YELLOW + (caractereCourant == '+' ? "ADD" : "SUB") + RESET);
+            
         }
 
     }
@@ -35,7 +39,7 @@ public class Analyseur {
             source.suivant();
             produit();
             // Au lieu de calculer on écrit l'opération
-            System.out.println(caractereCourant);
+            System.out.println(YELLOW + (caractereCourant == '*' ? "MUL" : "DIV") + RESET);
         }
         // return true;
     }
@@ -68,7 +72,7 @@ public class Analyseur {
         char caractereCourant = source.premier();
 
         if (caractereCourant >= '0' && caractereCourant <= '9') {
-            System.out.println(caractereCourant - '0'); //On imprime la valeur au lieu d'empilerrr !!
+            System.out.println(CYAN + "PUSH " + (caractereCourant - '0') + RESET); //On imprime la valeur au lieu d'empilerrr !!
             source.suivant();
 
         }
@@ -76,11 +80,12 @@ public class Analyseur {
     }
 
     // Verifie la presence du point-virgule final et affiche un message selon le résultat de l'analyse
-    public void compilateur() throws SyntaxException, Exception{
+    public void compilateur() throws Exception, SyntaxException{
+        System.out.println(GREEN + "===== Programme compilé =====" + RESET);
         somme();
         if (source.premier() == ';') { //Test1
-            // System.out.println(source.premier());
-            System.out.println("Analyse correcte.");
+            System.out.println(GREEN + "==============================" + RESET);
+            System.out.println(GREEN + "Analyse correcte." + RESET);
         } else {
             // System.out.println(source.premier());
             // System.out.println("Erreur de syntaxe.");
