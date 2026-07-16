@@ -10,17 +10,17 @@ public class Source{
     }
 
     // la focntion qui retourne le caratere pris dans la chaine
-    public char premier() throws SyntaxException{
+    public char premier() throws Exception{
       if (indice >= chaine.length()) {
-            throw new SyntaxException("Debordement de la chaîne: indice ="+ indice);
+            throw new Exception("Debordement de la chaîne: indice ="+ indice);
          }
       return chaine.charAt(indice);
   }
 
     // la fonction qui incremente l'indice de la position
-    public void suivant() throws SyntaxException{
+    public void suivant() throws Exception{
          if (indice >= chaine.length()) {
-            throw new SyntaxException("Debordement de la chaîne: indice");
+            throw new Exception("Debordement de la chaîne: indice");
          }
         indice++;
     }

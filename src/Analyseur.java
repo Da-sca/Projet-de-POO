@@ -10,7 +10,7 @@ public class Analyseur {
 
 
     // Analyse une somme : S -> P | P + S
-    public void somme()  throws  SyntaxException {
+    public void somme()  throws  SyntaxException, Exception {
 
         produit();
 
@@ -25,7 +25,7 @@ public class Analyseur {
     }
 
     // Analyse un produit : P -> T | T * P
-    public void produit() throws SyntaxException {
+    public void produit() throws SyntaxException, Exception {
         terme();
         char caractereCourant = source.premier();
 
@@ -39,7 +39,7 @@ public class Analyseur {
     }
 
     // Analyse un terme : T -> C | ( S )
-    public void terme() throws SyntaxException {
+    public void terme() throws SyntaxException, Exception {
 
         char caractereCourant = source.premier();
 
@@ -61,7 +61,7 @@ public class Analyseur {
     }
 
     // Analyse un chiffre : C -> 0 | 1 | ... | 9
-    public void chiffre() throws  SyntaxException {
+    public void chiffre() throws  SyntaxException, Exception {
 
         char caractereCourant = source.premier();
 
@@ -74,7 +74,7 @@ public class Analyseur {
     }
 
     // Verifie la presence du point-virgule final et affiche un message selon le résultat de l'analyse
-    public void interpreteur() throws  SyntaxException{
+    public void interpreteur() throws  SyntaxException, Exception{
         somme();
         if (source.premier() == ';') { //Test1
             // System.out.println(source.premier());
