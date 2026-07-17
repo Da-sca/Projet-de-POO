@@ -3,6 +3,22 @@
 **Mini-projet de Programmation Orientée Objet (POO)**
 
 ---
+# Plan
+
+- [Introduction](#introduction)
+- [Grammaire utilisée](#grammaire-utilisée)
+- [Les différentes versions du projet](#les-différentes-versions-du-projet)
+  - [Version 1 : Analyseur syntaxique de base](#version-1--analyseur-syntaxique-de-base)
+  - [Version 2 : Gestion du débordement](#version-2--gestion-du-débordement)
+  - [Version 3 : Gestion des erreurs par exceptions](#version-3--gestion-des-erreurs-par-exceptions)
+  - [Version 4 : Interpréteur](#version-4--interpréteur)
+  - [Version 5 : Compilateur](#version-5--compilateur)
+- [Architecture du projet](#architecture-du-projet)
+- [Compilation et exécution](#compilation-et-exécution)
+- [Navigation entre les versions](#navigation-entre-les-versions)
+- [Exemples de fonctionnement](#exemples-de-fonctionnement)
+- [Équipe](#équipe)
+---
 
 ## Introduction
 Ce projet, réalisé dans le cadre du module de Programmation Orientée Objet, consiste à concevoir un analyseur syntaxique d'expressions arithmétiques en langage Java. Il s'appuie sur une grammaire formelle et met en œuvre la technique de l'analyse descendante récursive afin de reconnaître des expressions telles que 2+3*4;.
@@ -172,6 +188,68 @@ javac *.java
 ```bash
 java Principale
 ```
+
+---
+## Navigation entre les versions
+
+Chaque évolution du projet est associée à un **tag Git**, permettant de retrouver l'état exact du code correspondant à une étape donnée.
+
+### Afficher tous les tags
+
+```bash
+git tag
+```
+
+Exemple de résultat :
+
+```text
+v1
+v2
+v3
+v4
+v5
+```
+
+### Se positionner sur une version
+
+Pour consulter une version précise du projet :
+
+```bash
+git checkout <nom_du_tag>
+```
+
+Par exemple, pour accéder à la version de l'interpréteur (sans aucune ambiguitée sur le nommage d'un commit ou d'un tag):
+
+```bash
+git checkout tags/v4
+```
+
+Ou à la version du compilateur :
+
+```bash
+git checkout tags/v5
+```
+
+### Revenir à la dernière version du projet
+
+Pour revenir sur la branche principale :
+
+```bash
+git checkout main
+```
+
+### Créer une branche à partir d'un tag (optionnel)
+
+Si vous souhaitez modifier une ancienne version sans impacter les autres :
+
+```bash
+git checkout -b ma-branche v4
+```
+
+Une nouvelle branche est alors créée à partir du tag sélectionné, ce qui permet de travailler librement sur cette version.
+
+
+###### (en cas de modification ou poursuite du projet dans le futur)
 
 ---
 
